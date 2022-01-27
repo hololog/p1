@@ -9,10 +9,11 @@
 <title>글작성</title>
 </head>
 <body>
+<jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- 세션으로 로그인 휴요성 검사 ----------------------------------------------------------------- -->
 	<div class="container mt-5">
 		<h2>문의글작성</h2>
-		<form action="writePro.jsp" method="post">
+		<form action="writePro.jsp" method="post" enctype="Multipart/form-data">
 			<table class="table table-hover">
 				<tr>
 					<td><input type="text" name="subject" class="form-control" placeholder="제목"></td>
