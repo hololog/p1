@@ -16,13 +16,12 @@ CREATE TABLE board(
 select * from board;
 
 create table board(
-	num int,
+	num int primary key,
 	name varchar(10) not null,
 	subject varchar(20) not null,
 	content varchar(500) not null,
 	readcount int default 0,
-	date date ,
-	primary key (num)
+	indert_date datetime ,
 	);
 	
 	
