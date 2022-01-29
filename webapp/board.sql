@@ -23,5 +23,15 @@ create table board(
 	readcount int default 0,
 	indert_date datetime ,
 	);
-	
-	
+
+CREATE table member(
+	id varchar(20) PRIMARY KEY,
+	pass varchar(20) NOT NULL,
+	name varchar(20) NOT NULL,
+	nick varchar(20) NOT NULL UNIQUE,
+	email varchar(50) NOT NULL,
+	address varchar(100) NOT NULL,
+	join_date datetime default current_timestamp
+);
+
+select * from member;
