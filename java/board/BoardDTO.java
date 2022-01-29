@@ -11,12 +11,12 @@ public class BoardDTO {
 	private Timestamp date;
 	private String file;
 	
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
+//	public int getNum() {
+//		return num;
+//	}
+//	public void setNum(int num) {
+//		this.num = num;
+//	}
 	public String getSubject() {
 		return subject;
 	}
@@ -26,15 +26,15 @@ public class BoardDTO {
 	public String getContent() {
 		return content;
 	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public int getViews() {
-		return views;
-	}
-	public void setViews(int readcount) {
-		this.views = readcount;
-	}
+//	public void setContent(String content) {
+//		this.content = content;
+//	}
+//	public int getViews() {
+//		return views;
+//	}
+//	public void setViews(int readcount) {
+//		this.views = readcount;
+//	}
 	public Timestamp getDate() {
 		return date;
 	}
