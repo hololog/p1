@@ -58,8 +58,8 @@ public class BoardDAO {
 		try {
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1,bDTO.getNum());
-			pstmt.setString(2,bDTO.getName());
+//			pstmt.setInt(1,bDTO.getNum());
+//			pstmt.setString(2,bDTO.getName());
 			pstmt.setString(3,bDTO.getSubject());
 			pstmt.setString(4,bDTO.getContent());
 			pstmt.setInt(5,0);//조회수는 0으로 초기화
@@ -99,10 +99,10 @@ public class BoardDAO {
 			
 			while(rs.next()) {
 				bDTO=new BoardDTO();
-				bDTO.setNum(rs.getInt(1));
-				bDTO.setName(rs.getString(2));
+//				bDTO.setNum(rs.getInt(1));
+//				bDTO.setName(rs.getString(2));
 				bDTO.setSubject(rs.getString(3));
-				bDTO.setViews(rs.getInt(4));
+//				bDTO.setViews(rs.getInt(4));
 				bDTO.setDate(rs.getTimestamp(5));
 				
 				list.add(bDTO);
@@ -127,12 +127,12 @@ public class BoardDAO {
 			
 			if(rs.next()) {
 				bDTO=new BoardDTO();
-				bDTO.setNum(rs.getInt(1));
-				bDTO.setName(rs.getString(2));
-				bDTO.setPass(rs.getString(3));
+//				bDTO.setNum(rs.getInt(1));
+//				bDTO.setName(rs.getString(2));
+//				bDTO.setPass(rs.getString(3));
 				bDTO.setSubject(rs.getString(4));
-				bDTO.setContent(rs.getString(5));
-				bDTO.setViews(rs.getInt(6));
+//				bDTO.setContent(rs.getString(5));
+//				bDTO.setViews(rs.getInt(6));
 				bDTO.setDate(rs.getTimestamp(7));
 			} 
 			
@@ -150,10 +150,10 @@ public class BoardDAO {
 		try {
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1,bDTO.getName());
+//			pstmt.setString(1,bDTO.getName());
 			pstmt.setString(2,bDTO.getSubject());
 			pstmt.setString(3,bDTO.getContent());
-			pstmt.setInt(4,bDTO.getNum());
+//			pstmt.setInt(4,bDTO.getNum());
 			pstmt.executeUpdate();
 			
 			return 1; //업데이트 성공
@@ -178,12 +178,12 @@ public class BoardDAO {
 			if(rs.next()) {
 				bDTO=new BoardDTO();
 				
-				bDTO.setNum(rs.getInt(1));
-				bDTO.setName(rs.getString(2));
-				bDTO.setPass(rs.getString(3));
+//				bDTO.setNum(rs.getInt(1));
+//				bDTO.setName(rs.getString(2));
+//				bDTO.setPass(rs.getString(3));
 				bDTO.setSubject(rs.getString(4));
-				bDTO.setContent(rs.getString(5));
-				bDTO.setViews(rs.getInt(6));
+//				bDTO.setContent(rs.getString(5));
+//				bDTO.setViews(rs.getInt(6));
 				bDTO.setDate(rs.getTimestamp(7));
 			}
 			
