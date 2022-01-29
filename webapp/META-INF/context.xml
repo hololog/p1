@@ -7,7 +7,7 @@
 			  password="1234"
 			  driverClassName="com.mysql.jdbc.Driver"
 			  factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-			  url="jdbc:mysql://localhost:3306/jspdb1?useSSL=false"
+			  url="jdbc:mysql://localhost:3306/project1?useSSL=false"
 			  maxActive="500" 
   			  maxIdle="100">
 	</Resource>
