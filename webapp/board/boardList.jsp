@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <title>게시글 목록</title>
+<!-- bootstrap css -->
+<jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 </head>
 <body>
 <!--헤더 -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<!--헤더 -->
 <!-- 게시판 본문 -->
 <div class="container mt-3">
 	<table class="table table-stripe" >
@@ -42,7 +43,8 @@
 	</nav>
 </div>
 <!-- footer -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<!-- footer -->
+<!-- bootstratp js -->
+<jsp:include page="../inc/bootstrap_js.jsp"></jsp:include>
 </body>
 </html>
