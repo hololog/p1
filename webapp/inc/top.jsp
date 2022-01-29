@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <header>
+<%
+	String id=(String)session.getAttribute("id");
+%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -23,6 +26,26 @@
         </li>
       </ul>
     </div>
-  </div>
+
+<% 
+	if(id!=null){
+%>
+	    <div>
+		    <a href="../member/logoutPro.jsp">로그아웃</a> |
+		    <a href="../member/memberInfo.jsp">회원정보</a>
+	    </div>
+	    <div class=""></div>
+<%
+	} else {
+%>	    
+		<div>
+		    <a href="../member/loginForm.jsp">로그인</a> |
+		    <a href="../member/joinForm.jsp">회원가입</a>
+	    </div>
+	    <div class=""></div>
+<%		
+	}
+%>
+  </div>  
 </nav>
 </header>
