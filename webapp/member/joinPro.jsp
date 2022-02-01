@@ -1,23 +1,29 @@
 <%@page import="member.MemberDAO"%>
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" --%>
-<%--     pageEncoding="UTF-8"%> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>member/joinPro.jsp</title>
+</head>
+<body>
 <%
-	request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 %>	
-	<jsp:useBean id="bean" class="member.MemberDTO"></jsp:useBean>
-	<jsp:setProperty property="*" name="bean"/>
-<!-- <!DOCTYPE html> -->
-<!-- <html> -->
-<!-- <head> -->
-<!-- <meta charset="UTF-8"> -->
-<!-- <title>member/joinPro.jsp</title> -->
-<!-- </head> -->
-<!-- <body> -->
+<jsp:useBean id="bean" class="member.MemberDTO"></jsp:useBean>
+<jsp:setProperty property="*" name="bean"/>
 <%
-	MemberDAO mDAO=new MemberDAO();
-	mDAO.insertMember(bean);
+String postcode=request.getParameter("postcode");
+String detailAddress=request.getParameter("detailAddress");
+String extraAddress=request.getParameter("extraAddress");
+String address=bean.getAddress() +", "+ detailAddress +", "+ extraAddress +", "+ postcode;
+bean.setAddress(address);
+
+MemberDAO mDAO=new MemberDAO();
+mDAO.insertMember(bean);
 	
-	response.sendRedirect("loginForm.jsp");
+response.sendRedirect("loginForm.jsp");
 %>
-<!-- </body> -->
-<!-- </html> -->
+</body>
+</html>

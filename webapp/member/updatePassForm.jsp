@@ -16,10 +16,10 @@
 <!-- header-->
 <!-- main contents -->
 <%
-	String id=(String)session.getAttribute("id");
+	String id=(String)session.getAttribute("sessionID");
 	
 	if(id==null){
-		response.sendRedirect("../member/loginForm.jsp");	
+		response.sendRedirect("loginForm.jsp");	
 	} 
 %>
 <div class="container mt-5">

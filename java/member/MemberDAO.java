@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -106,7 +108,6 @@ public class MemberDAO {
 				mDTO.setAddress(rs.getString("address"));
 				mDTO.setJoinDate(rs.getTimestamp("join_date"));
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -133,7 +134,6 @@ public class MemberDAO {
 		} finally {
 			closeDB();
 		}
-		
 	}
 	//비밀번호 변경
 	public int updatePass(MemberDTO mDTO) {
@@ -152,5 +152,49 @@ public class MemberDAO {
 			closeDB();
 		}
 		return 0;
+	}
+	//회원탈퇴
+	public void deleteMember(MemberDTO mDTO) {
+		String sql="DELETE FROM member WHERE id=?";
+		
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mDTO.getId());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	//유저리스트
+	public List<MemberDTO> getUserList() {
+		String sql="SELECT * FROM member";
+		List<MemberDTO> list=new ArrayList<>();
+		MemberDTO mDTO=null;
+		
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				mDTO=new MemberDTO();
+				mDTO.setId(rs.getString("id"));
+				mDTO.setName(rs.getString("name"));
+				mDTO.setNick(rs.getString("nick"));
+				mDTO.setEmail(rs.getString("email"));
+				mDTO.setAddress(rs.getString("address"));
+				mDTO.setJoinDate(rs.getTimestamp("join_date"));
+				
+				list.add(mDTO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return list;
 	}
 }

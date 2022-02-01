@@ -16,15 +16,16 @@
 <!-- header-->
 <!-- main contents -->
 <%
-	String id=(String)session.getAttribute("id");
+	String id=(String)session.getAttribute("sessionID");
 	MemberDAO mDAO=new MemberDAO();
 	
 	if(id==null){
 		response.sendRedirect("loginForm.jsp");		
-		
-	} else {
-		MemberDTO mDTO=mDAO.getUserInfo(id);	
+	} else if(id.equals("admin")){
+		id=request.getParameter("id");
+	} 
 	
+	MemberDTO mDTO=mDAO.getUserInfo(id);	
 %>
 	<div class="container mt-3">
 		<h3>회원정보</h3>
@@ -64,9 +65,7 @@
 				</td>
 			</tr>
 		</table>
-	
 	</div>
-<% }%>
 <!-- main contents -->
 <!-- footer -->
 <!-- footer -->

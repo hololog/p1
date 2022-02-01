@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>member/login.jsp</title>
 <!-- bootstrap css -->
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 </head>
 <body>
 <%
-	String id=(String)session.getAttribute("id");
+	String id=(String)session.getAttribute("sessionID");
 	
 	if(id!=null){
 		response.sendRedirect("../main/main.jsp");	

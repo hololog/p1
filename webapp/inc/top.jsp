@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <header>
 <%
-	String id=(String)session.getAttribute("id");
+	String id=(String)session.getAttribute("sessionID");
 %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -28,19 +28,26 @@
     </div>
 
 <% 
-	if(id!=null){
+	if(id==null){
 %>
-	    <div>
-		    <a href="../member/logoutPro.jsp">로그아웃</a> |
-		    <a href="../member/memberInfo.jsp">회원정보</a>
+		<div>
+		    <a href="../member/loginForm.jsp">로그인</a> |
+		    <a href="../member/joinForm.jsp">회원가입</a>
 	    </div>
 	    <div class=""></div>
 <%
 	} else {
 %>	    
-		<div>
-		    <a href="../member/loginForm.jsp">로그인</a> |
-		    <a href="../member/joinForm.jsp">회원가입</a>
+	    <div>
+<%	    
+		if(id.equals("admin")){
+%>		   
+		    <a href="../admin/memberList.jsp">회원목록</a> |
+<%		
+		}
+%>
+		    <a href="../member/logoutPro.jsp">로그아웃</a> |
+		    <a href="../member/memberInfo.jsp">회원정보</a>
 	    </div>
 	    <div class=""></div>
 <%		

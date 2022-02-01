@@ -14,10 +14,10 @@
 <!-- header-->
 <!-- main contents -->
 <%
-	String id=(String)session.getAttribute("id");
+	String id=(String)session.getAttribute("sessionID");
 	
 	if(id==null)
-		response.sendRedirect("../member/login.jsp");		
+		response.sendRedirect("loginForm.jsp");		
 %>
 <div>
 	<h2>비밀번호 재확인</h2>

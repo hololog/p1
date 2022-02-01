@@ -16,11 +16,11 @@
 <!-- header-->
 <!-- main contents -->
 <%
-	String id=(String)session.getAttribute("id");
+	String id=(String)session.getAttribute("sessionID");
 	MemberDAO mDAO=new MemberDAO();
 	
 	if(id==null){
-		response.sendRedirect("../member/loginForm.jsp");	
+		response.sendRedirect("loginForm.jsp");	
 	} else {
 		MemberDTO mDTO=mDAO.getUserInfo(id);	
 %>

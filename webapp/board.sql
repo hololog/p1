@@ -35,3 +35,14 @@ CREATE table member(
 );
 
 select * from member;
+
+truncate table member;
+
+
+
+
+
+
+
+
+

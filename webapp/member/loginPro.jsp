@@ -20,7 +20,7 @@
 	
 	if(bean!=null){
 		//DB에 같은 정보있으면 로그인(세션생성)
-		session.setAttribute("id", bean.getId());
+		session.setAttribute("sessionID", bean.getId());
 %>
 		<script type="text/javascript">
 			alert("<%=bean.getNick() %>님, 반갑습니다.");

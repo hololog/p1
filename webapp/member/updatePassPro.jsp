@@ -20,6 +20,7 @@
 	String newPass1=request.getParameter("pass3");
 	MemberDAO mDAO=new MemberDAO();
  	bean=mDAO.userCheck(bean);
+ 	
 //  	int result=0;
 	if(!(newPass.equals(newPass1))) {
 %>
@@ -36,6 +37,7 @@
 		</script>
 			
 <%	} else {
+		bean.setPass2(newPass);
 		int result=mDAO.updatePass(bean);
 		
 		if(result==0){
