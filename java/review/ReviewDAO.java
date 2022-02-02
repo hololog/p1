@@ -197,6 +197,10 @@ public class ReviewDAO {
 		} 
 		return rDTO;
 	}
+	//리뷰업데이트
+	public void updateReview() {
+		String sql="UPDATE review SET ";
+	}
 }
 
 
