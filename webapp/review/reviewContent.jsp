@@ -13,15 +13,15 @@
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 </head>
 <body>
+<!-- header-->
+<jsp:include page="../inc/top.jsp"></jsp:include>
+<!-- header-->
 <%
 int num=Integer.parseInt(request.getParameter("num"));
 ReviewDAO rDAO=new ReviewDAO();
 rDAO.updateReadCount(num);
 ReviewDTO rDTO=rDAO.getContent(num);
 %>
-<!-- header-->
-<jsp:include page="../inc/top.jsp"></jsp:include>
-<!-- header-->
 <!-- main contents -->
 <div class="container mt-3">
 	<div>
@@ -44,13 +44,15 @@ ReviewDTO rDTO=rDAO.getContent(num);
 				 <td colspan="2">
 				 	<input type="button" value="목록" onclick="location.href='reviewList.jsp'" >
 <%
+//본인이 작성한 글에만 수정하기버튼 보이기
 String id=(String)session.getAttribute("sessionID");
 MemberDAO mDAO=new MemberDAO();
+String userNick=mDAO.getUserInfo(id).getNick();
+String reviewNick=rDTO.getNick();
 if(id!=null){
-	MemberDTO mDTO=mDAO.getUserInfo(id);
- 	if(id.equals(mDTO.getId())){
+	if(userNick.equals(reviewNick)){
 %>				 	
-				 	<input type="button" value="수정" onclick="location.href='updateReviewForm.jsp'" >
+				 	<input type="button" value="수정" onclick="location.href='updateReviewForm.jsp?num=<%=num %>'" >
 <%
  	}
 }
