@@ -60,8 +60,4 @@ public class MemberDTO {
 	public void setJoinDate(Timestamp joinDate) {
 		this.joinDate = joinDate;
 	}
-	
-	
 }
-
-

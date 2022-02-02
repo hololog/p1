@@ -36,6 +36,7 @@
 </div>
 <!-- main contents -->
 <!-- footer -->
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- footer -->
 <!-- bootstratp js -->
 <jsp:include page="../inc/bootstrap_js.jsp"></jsp:include>

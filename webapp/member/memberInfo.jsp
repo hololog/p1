@@ -17,44 +17,45 @@
 <!-- main contents -->
 <%
 	String id=(String)session.getAttribute("sessionID");
-	MemberDAO mDAO=new MemberDAO();
-	
-	if(id==null){
+// 	String memberID=request.getParameter("id");
+
+	if(id == null){
 		response.sendRedirect("loginForm.jsp");		
-	} else if(id.equals("admin")){
-		id=request.getParameter("id");
 	} 
-	
+// 	else if(id.equals("admin") && memberID!=null){
+// 		id=memberID;
+// 	} 
+	MemberDAO mDAO=new MemberDAO();
 	MemberDTO mDTO=mDAO.getUserInfo(id);	
 %>
 	<div class="container mt-3">
 		<h3>회원정보</h3>
 		<table class="table">
 			<tr>
-				<td><label for="id"> 아이디</label></td>
+				<td>아이디</td>
 				<td><%=mDTO.getId() %></td>
 			</tr>
 			<tr>
-				<td><label for="nick"> 닉네임</label></td>
+				<td>닉네임</td>
 				<td><%=mDTO.getNick() %></td>
 			</tr>
 			<tr>
-				<td><label for="name"> 이름</label></td>
+				<td>이름</td>
 				<td><%=mDTO.getName() %></td>
 			</tr>
 	<!-- 		<tr> -->
 	<!-- 			<td>프로필사진</td><td></td> -->
 	<!-- 		</tr> -->
 			<tr>
-				<td><label for="email"> 이메일</label></td>
+				<td>이메일</td>
 				<td><%=mDTO.getEmail() %></td>
 			</tr>
 			<tr>
-				<td><label for="address">주소</label></td>
+				<td>주소</td>
 				<td><%=mDTO.getAddress() %></td>
 			</tr>
 			<tr>
-				<td><label for="join_date">가입일</label></td>
+				<td>가입일</td>
 				<td><%=mDTO.getJoinDate() %></td>
 			</tr>
 			<tr>
@@ -68,6 +69,7 @@
 	</div>
 <!-- main contents -->
 <!-- footer -->
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- footer -->
 <!-- bootstratp js -->
 <jsp:include page="../inc/bootstrap_js.jsp"></jsp:include>

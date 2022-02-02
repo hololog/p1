@@ -38,8 +38,21 @@ select * from member;
 
 truncate table member;
 
+create table review(
+	num int primary key,
+	nick varchar(10) not null,
+	subject varchar(20) not null,
+	content varchar(500) not null,
+	review_file varchar(100),
+	readcount int default 0,
+	review_date datetime default current_timestamp
+	);
 
+alter table review modify content varchar(1000);
 
+select * from review;
+
+desc review
 
 
 

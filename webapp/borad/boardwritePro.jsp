@@ -18,9 +18,9 @@
 <%
 BoardDAO bDAO=new BoardDAO();
 //게시물번호 업데이트
-bean.setNum(bDAO.getNextNum());
+// bean.setNum(bDAO.getNextNum());
 //조회수 0
-bean.setViews(0);
+// bean.setViews(0);
 
 bDAO.insertBoard(bean);//수정하기----------------------------------세션 아이디
 response.sendRedirect("list.jsp");//목록으로
