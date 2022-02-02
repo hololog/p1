@@ -1,3 +1,6 @@
+<%@page import="member.MemberDAO"%>
+<%@page import="review.ReviewDTO"%>
+<%@page import="review.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,6 +19,23 @@
 String id=(String)session.getAttribute("sessionID");
 if(id==null){
 	response.sendRedirect("../member/loginForm.jsp");
+}
+int num=Integer.parseInt(request.getParameter("num"));
+ReviewDAO rDAO=new ReviewDAO();
+ReviewDTO rDTO=rDAO.getContent(num);
+
+MemberDAO mDAO=new MemberDAO();
+String userNick=mDAO.getUserInfo(id).getNick();
+String reviewNick=rDTO.getNick();
+
+//멤버의 닉이랑 리뷰의 닉이 같을때만 수정화면보이기 
+if(!(userNick.equals(reviewNick))){
+%>	
+	<script type="text/javascript">
+		alert("본인의 게시물이 아닙니다.");
+		location.href="../review/reviewList.jsp";
+	</script>
+<%
 }
 %>
 <!-- main -->
