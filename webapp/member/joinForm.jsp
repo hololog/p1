@@ -113,7 +113,7 @@
 				<div>
 					<input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly required>
 					<input type="button" value="우편번호 찾기" onclick="execDaumPostcode()"><br>
-					<input type="text" id="address" name="address" placeholder="주소" readonly><br>
+					<input type="text" id="address" name="address" placeholder="주소" readonly required><br>
 					<input type="text" id="detailAddress"name="detailAddress" placeholder="상세주소" required>
  					<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목">
 				</div>
