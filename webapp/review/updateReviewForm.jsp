@@ -37,6 +37,7 @@ if(!(userNick.equals(reviewNick))){
 	</script>
 <%
 }
+
 %>
 <!-- main -->
 	<div class="container mt-5">
@@ -44,11 +45,13 @@ if(!(userNick.equals(reviewNick))){
 		<form action="updateReviewPro.jsp" method="post" enctype="Multipart/form-data">
 			<table class="table table-hover">
 				<tr>
-					<td><input type="text" name="subject" class="form-control" placeholder="리뷰할 메뉴" required></td>
+					<td><input type="text" name="subject" class="form-control" value="<%=rDTO.getSubject() %>" required></td>
 				</tr>
 				
 				<tr>
-					<td><textarea name="content" class="form-control" rows="20" placeholder="여기에 후기를 적어주세요" required></textarea></td>
+					<td><textarea name="content" class="form-control" rows="20" required>
+						<%=rDTO.getContent() %></textarea>
+					</td>
 				</tr>
 				
 				<tr>
@@ -59,8 +62,8 @@ if(!(userNick.equals(reviewNick))){
 				</tr>
 				<tr>
 					<td>
-						<input type="button" value="돌아가기" class="btn btn-primary" onclick="location.href='reviewList.jsp'">
-						<input type="submit" value="리뷰작성" class="btn btn-primary">
+						<input type="button" value="돌아가기" class="btn btn-primary" onclick="location.href='reviewContent.jsp?num=<%=num %>'">
+						<input type="submit" value="수정" class="btn btn-primary">
 					</td>
 				</tr>
 			</table>
