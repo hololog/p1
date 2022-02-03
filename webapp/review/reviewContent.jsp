@@ -47,9 +47,10 @@ ReviewDTO rDTO=rDAO.getContent(num);
 //본인이 작성한 글에만 수정하기버튼 보이기
 String id=(String)session.getAttribute("sessionID");
 MemberDAO mDAO=new MemberDAO();
-String userNick=mDAO.getUserInfo(id).getNick();
-String reviewNick=rDTO.getNick();
 if(id!=null){
+	String reviewNick=rDTO.getNick();
+	String userNick=mDAO.getUserInfo(id).getNick();
+	
 	if(userNick.equals(reviewNick)){
 %>				 	
 				 	<input type="button" value="수정" onclick="location.href='updateReviewForm.jsp?num=<%=num %>'" >
