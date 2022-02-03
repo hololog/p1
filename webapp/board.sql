@@ -36,23 +36,24 @@ CREATE table member(
 
 select * from member;
 
-truncate table member;
 
 create table review(
 	num int primary key,
 	nick varchar(10) not null,
 	subject varchar(20) not null,
-	content varchar(500) not null,
+	content varchar(1000) not null,
 	review_file varchar(100),
 	readcount int default 0,
 	review_date datetime default current_timestamp
 	);
 
-alter table review modify content varchar(1000);
+alter table review modify subject varchar(50) not null;
 
 select * from review;
 
 desc review
+
+show tables
 
 
 
