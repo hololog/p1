@@ -51,9 +51,7 @@ alter table review modify subject varchar(50) not null;
 
 select * from review;
 
-desc review
 
-show tables
 
 
 
