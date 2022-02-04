@@ -57,6 +57,7 @@ List<ReviewDTO> list=rDAO.getReviewList(pageSize, startRow);
 	</table>
 </div>
 <!-- 게시판 본문 -->
+<!-- 페이징 -->
 <%
 int pageBlock=5;
 int startPage=(currentPage-1)/pageBlock*pageBlock+1;
@@ -70,7 +71,8 @@ if(endPage>pageCount){
 	endPage=pageCount;
 }
 %>	 
-<!--페이징  -->
+<!-- 페이징 -->
+<!-- 페이지 이동버튼 -->
 <div>
 	<nav aria-label="Page navigation" >
 	  <ul class="pagination justify-content-center" >
@@ -87,8 +89,6 @@ if(endPage>pageCount){
 		for(int i=startPage; i<=endPage; i++){
 %>			
 	    <li class="page-item"><a class="page-link" href="reviewList.jsp?pageNum=<%=i %>"><%=i %></a></li>
-<!-- 	    <li class="page-item"><a class="page-link" href="reviewList.jsp?pageNum=2">2</a></li> -->
-<!-- 	    <li class="page-item"><a class="page-link" href="reviewList.jsp?pageNum=3">3</a></li> -->
 <%		}
 		
 		if(endPage < pageCount){
@@ -103,7 +103,7 @@ if(endPage>pageCount){
 	  </ul>
 	</nav>
 </div>
-<!--페이징  -->
+<!-- 페이지 이동버튼 -->
 <!-- footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- footer -->
