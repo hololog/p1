@@ -169,14 +169,16 @@ public class MemberDAO {
 		}
 	}
 	//유저리스트
-	public List<MemberDTO> getUserList() {
-		String sql="SELECT * FROM member";
+	public List<MemberDTO> getUserList(int startRow, int pageSize) {
+		String sql="SELECT * FROM member limit ?,?";
 		List<MemberDTO> list=new ArrayList<>();
 		MemberDTO mDTO=null;
 		
 		try {
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow-1);
+			pstmt.setInt(2, pageSize);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -196,5 +198,24 @@ public class MemberDAO {
 			closeDB();
 		}
 		return list;
+	}
+	public int getMemberCount() {
+		String sql="SELECT count(*) FROM member";
+		int count=0;
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+		return count;
 	}
 }
