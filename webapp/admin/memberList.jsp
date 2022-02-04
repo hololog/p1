@@ -18,15 +18,12 @@
 <!-- header-->
 <%
 String id=(String)session.getAttribute("sessionID");
-
+//admin만 해당화면 보이기
 if(id==null){
 	response.sendRedirect("../member/loginForm.jsp");
 } else if(!(id.equals("admin"))){
 	response.sendRedirect("../main/main.jsp");
 }
-
-MemberDAO mDAO=new MemberDAO();
-List<MemberDTO> list=mDAO.getUserList();
 %>
 <div class="container mt-5 table-responsive">
 <table class="table table-striped table-hover">
@@ -42,8 +39,26 @@ List<MemberDTO> list=mDAO.getUserList();
 		</tr>
 	</thead>	
 <%
+// 페이징
+String pageNum=request.getParameter("pageNum");
+if(pageNum==null)
+	pageNum="1";
+int currentPage=Integer.parseInt(pageNum);
+int pageSize=2; 
+int startRow=(currentPage-1)*pageSize+1;
+int endRow=startRow+pageSize-1;
+//페이지 이동 버트
+MemberDAO mDAO=new MemberDAO();
+int pageBlock=10;
+int count=mDAO.getMemberCount();
+int pageCount=count/pageSize + (count%pageSize==0? 0:1);
+int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+int endPage=startPage+pageBlock-1;
+//DB서 리스트 가져오기
+List<MemberDTO> list=mDAO.getUserList(startRow, pageSize);
+int num = 0;
+
 	for(MemberDTO mDTO : list){
-		int num = 0;
 		num++;
 %>	
 	<tbody>	
@@ -59,6 +74,38 @@ List<MemberDTO> list=mDAO.getUserList();
 	</tbody>		
 <%	}%>
 </table>
+<!-- 페이지 이동버튼 -->
+<div>
+	<nav aria-label="Page navigation" >
+	  <ul class="pagination justify-content-center" >
+
+<%	if(endPage > pageCount)
+		endPage=pageCount;
+
+	if(startPage > pageBlock){%>
+		<li class="page-item">
+	      <a class="page-link" href="reviewList.jsp?pageNum=<%=startPage-1 %>" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+<%	}
+////////////////////////////////////////////////////////////////////////////	
+%>
+
+	    <li class="page-item"><a class="page-link" href="reviewList.jsp?pageNum="></a></li>
+
+		
+<%	if(endPage < pageCount){%>
+		<li class="page-item">
+	      <a class="page-link" href="reviewList.jsp?pageNum=<%=endPage+1 %>" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+<%	}%>
+	  </ul>
+	</nav>
+</div>
+<!-- 페이지 이동버튼 -->
 </div>
 <!-- main contents -->
 <!-- footer -->
