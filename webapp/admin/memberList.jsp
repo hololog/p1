@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="member.MemberDTO"%>
 <%@page import="member.MemberDAO"%>
@@ -44,18 +45,21 @@ String pageNum=request.getParameter("pageNum");
 if(pageNum==null)
 	pageNum="1";
 int currentPage=Integer.parseInt(pageNum);
-int pageSize=2; 
+int pageSize=20; 
 int startRow=(currentPage-1)*pageSize+1;
 int endRow=startRow+pageSize-1;
 //페이지 이동 버트
 MemberDAO mDAO=new MemberDAO();
-int pageBlock=10;
+int pageBlock=5;
 int count=mDAO.getMemberCount();
 int pageCount=count/pageSize + (count%pageSize==0? 0:1);
 int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 int endPage=startPage+pageBlock-1;
 //DB서 리스트 가져오기
 List<MemberDTO> list=mDAO.getUserList(startRow, pageSize);
+
+SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+
 int num = 0;
 
 	for(MemberDTO mDTO : list){
@@ -69,7 +73,7 @@ int num = 0;
 			<td><%=mDTO.getNick() %></td>
 			<td><%=mDTO.getEmail() %></td>
 			<td><%=mDTO.getAddress() %></td>
-			<td><%=mDTO.getJoinDate() %></td>
+			<td><%=dateFormat.format(mDTO.getJoinDate())  %></td>
 		</tr>
 	</tbody>		
 <%	}%>
@@ -78,26 +82,25 @@ int num = 0;
 <div>
 	<nav aria-label="Page navigation" >
 	  <ul class="pagination justify-content-center" >
-
-<%	if(endPage > pageCount)
+<%	
+	if(endPage > pageCount){
 		endPage=pageCount;
-
-	if(startPage > pageBlock){%>
+	}
+	if(startPage > pageBlock){
+%>
 		<li class="page-item">
-	      <a class="page-link" href="reviewList.jsp?pageNum=<%=startPage-1 %>" aria-label="Previous">
+	      <a class="page-link" href="memberList.jsp?pageNum=<%=startPage-1 %>" aria-label="Previous">
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
 <%	}
-////////////////////////////////////////////////////////////////////////////	
-%>
-
-	    <li class="page-item"><a class="page-link" href="reviewList.jsp?pageNum="></a></li>
-
-		
-<%	if(endPage < pageCount){%>
+	for(int i=startPage; i<=endPage; i++){
+%>		
+	    <li class="page-item"><a class="page-link" href="memberList.jsp?pageNum=<%=i %>"><%=i %></a></li>
+<%	}
+	if(endPage < pageCount){%>
 		<li class="page-item">
-	      <a class="page-link" href="reviewList.jsp?pageNum=<%=endPage+1 %>" aria-label="Next">
+	      <a class="page-link" href="memberList.jsp?pageNum=<%=endPage+1 %>" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>
 	    </li>
