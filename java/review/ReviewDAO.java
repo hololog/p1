@@ -121,6 +121,8 @@ public class ReviewDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			closeDB();
 		}
 		return count;
 	}
