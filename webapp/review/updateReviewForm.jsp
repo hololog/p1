@@ -17,10 +17,13 @@
 <!-- header -->
 <%
 String id=(String)session.getAttribute("sessionID");
+//사용자 로그인 확인
 if(id==null){
 	response.sendRedirect("../member/loginForm.jsp");
 }
+
 int num=Integer.parseInt(request.getParameter("num"));
+
 ReviewDAO rDAO=new ReviewDAO();
 ReviewDTO rDTO=rDAO.getContent(num);
 
@@ -37,27 +40,26 @@ if(!(userNick.equals(reviewNick))){
 	</script>
 <%
 }
-
 %>
 <!-- main -->
 	<div class="container mt-5">
 		<h2>리뷰수정</h2>
 		<form action="updateReviewPro.jsp" method="post" enctype="Multipart/form-data">
+			<input type="hidden" name="num" value="<%=num%>">
 			<table class="table table-hover">
 				<tr>
 					<td><input type="text" name="subject" class="form-control" value="<%=rDTO.getSubject() %>" required></td>
 				</tr>
-				
-				<tr>
-					<td><textarea name="content" class="form-control" rows="20" required>
-						<%=rDTO.getContent() %></textarea>
-					</td>
-				</tr>
-				
 				<tr>
 					<td>
-                      <label for="inputImage">첨부이미지</label>
-                      <input type="file" name="file" id="inputImage" class="form-control">
+						<input type="image" src="../upload/<%=rDTO.getFile()%>" alt="첨부이미지"><br>
+						<textarea name="content" class="form-control" rows="20" required><%=rDTO.getContent() %></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+                        <label for="inputImage">첨부이미지</label>
+                        <input type="file" name="file" id="inputImage" class="form-control">
                     </td>
 				</tr>
 				<tr>
