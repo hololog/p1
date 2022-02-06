@@ -51,6 +51,8 @@ alter table review modify subject varchar(50) not null;
 
 select * from review;
 
+delete from member where id!='admin';
+
 
 
 
