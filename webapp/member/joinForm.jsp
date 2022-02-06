@@ -53,7 +53,7 @@
     }
     // 비밀번호확인 불일치시 경고창
     function checkValue() {
-		if(document.getElementsById('pass').value != document.getElementById('pass2').value){
+		if(document.getElementById('pass').value != document.getElementById('pass2').value){
 			alert("동일한 비밀번호를 입력해주세요");
 			return false;
 		}
