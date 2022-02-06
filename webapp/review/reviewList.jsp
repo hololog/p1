@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="review.ReviewDTO"%>
 <%@page import="review.ReviewDAO"%>
 <%@page import="java.util.List"%>
@@ -31,6 +32,8 @@ int currentPage=Integer.parseInt(pageNum);
 int startRow=pageSize*(currentPage-1)+1;
 
 List<ReviewDTO> list=rDAO.getReviewList(pageSize, startRow);
+
+SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 %>
 <!-- 게시판 본문 -->
 <div class="container mt-3">
@@ -46,7 +49,7 @@ List<ReviewDTO> list=rDAO.getReviewList(pageSize, startRow);
 		 	<td><a href="reviewContent.jsp?num=<%=r.getNum() %>"><%=r.getSubject() %></a></td>
 		 	<td><a href="#"><%=r.getNick() %></a></td>
 		 	<td><%=r.getReadcount() %></td>
-		 	<td><%=r.getReviewDate() %></td>
+		 	<td><%=dateFormat.format(r.getReviewDate())  %></td>
 		 </tr>
 <%}%>
 		 <tr> 
@@ -67,9 +70,7 @@ int reviewCount=rDAO.getReviewCount();
 //전체 페이지수
 int pageCount=reviewCount/pageSize + (reviewCount % pageSize == 0? 0:1);
 
-if(endPage>pageCount){
-	endPage=pageCount;
-}
+
 %>	 
 <!-- 페이징 -->
 <!-- 페이지 이동버튼 -->
@@ -77,6 +78,9 @@ if(endPage>pageCount){
 	<nav aria-label="Page navigation" >
 	  <ul class="pagination justify-content-center" >
 <%
+		if(endPage>pageCount){
+			endPage=pageCount;
+		}		
 		if(startPage > pageBlock){
 %>			
 			<li class="page-item">
