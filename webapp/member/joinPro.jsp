@@ -21,6 +21,14 @@ String address=bean.getAddress() +", "+ detailAddress +", "+ extraAddress +", "+
 bean.setAddress(address);
 
 MemberDAO mDAO=new MemberDAO();
+//DB채우기용
+// for(int i=0;i<120;i++){
+// 	bean.setId("id"+i);
+// 	bean.setName("홍길동"+i);
+// 	bean.setNick("HONG"+i);
+// 	bean.setEmail(i+"hong@gmail.com");
+// 	mDAO.insertMember(bean);
+// }
 mDAO.insertMember(bean);
 	
 response.sendRedirect("loginForm.jsp");
