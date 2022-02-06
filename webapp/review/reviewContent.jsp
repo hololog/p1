@@ -11,6 +11,12 @@
 <title>review/reviewContent.jsp</title>
 <!-- bootstrap css -->
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
+/////////////////////////////////////////////////////////////////////
+<script type="text/javascript">
+	function clickDel() {
+		location.replace("deletePro.jsp?num=변수?");
+	}
+</script>
 </head>
 <body>
 <!-- header-->
@@ -42,7 +48,7 @@ ReviewDTO rDTO=rDAO.getContent(num);
 				</tr>
 				<tr>
 				 <td colspan="2">
-				 	<input type="button" value="목록" onclick="location.href='reviewList.jsp'" >
+				 	<input type="button" class="btn btn-primary" value="목록" onclick="history.back()" >
 <%
 //본인이 작성한 글에만 수정하기버튼 보이기
 String id=(String)session.getAttribute("sessionID");
@@ -53,7 +59,9 @@ if(id!=null){
 	
 	if(userNick.equals(reviewNick)){
 %>				 	
-				 	<input type="button" value="수정" onclick="location.href='updateReviewForm.jsp?num=<%=num %>'" >
+				 	<input type="button" class="btn btn-primary" value="수정" onclick="location.href='updateReviewForm.jsp?num=<%=num %>'" >
+<%-- 				 	<input type="button" value="삭제" onclick="location.href='deleteReviewForm.jsp?num=<%=num %>'" > --%>
+				 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">삭제</button>
 <%
  	}
 }
@@ -64,6 +72,26 @@ if(id!=null){
 		</table>
 	</div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="ModalLabel">게시물 삭제</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-0">
+        이 게시물을 삭제하시겠습니까?
+      </div>
+      <div class="modal-footer flex-column border-top-0 ">
+        <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2">삭제</button>
+        <button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal" 
+        		onclick="location.href='deleteReviewPro.jsp?num=<%=num%>'">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
 <!-- main contents -->
 <!-- footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
