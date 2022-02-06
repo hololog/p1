@@ -75,36 +75,6 @@ public class ReviewDAO {
 		}
 		return max;
 	}
-	//리뷰목록
-//	public List<ReviewDTO> getReviewList() {
-//		String sql="SELECT * FROM review ORDER BY num desc";
-//		List<ReviewDTO> reviewList=new ArrayList<>();
-//		ReviewDTO rDTO=null;
-//		
-//		try {
-//			conn=getConnection();
-//			pstmt=conn.prepareStatement(sql);
-//			rs=pstmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				rDTO=new ReviewDTO();
-//				rDTO.setNum(rs.getInt("num"));
-//				rDTO.setFile(rs.getString("review_file"));
-//				rDTO.setSubject(rs.getString("subject"));
-//				rDTO.setNick(rs.getString("nick"));
-//				rDTO.setReadcount(rs.getInt("readcount"));
-//				rDTO.setReviewDate(rs.getTimestamp("review_date"));
-//				
-//				reviewList.add(rDTO);
-//			}
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			closeDB();
-//		}
-//		return reviewList;
-//	}
 	//리뷰목록(페이징-limit방식)
 	public List<ReviewDTO> getReviewList(int pageSize, int startRow) {
 		String sql="SELECT * FROM review ORDER BY num desc LIMIT ?,?";
@@ -198,8 +168,41 @@ public class ReviewDAO {
 		return rDTO;
 	}
 	//리뷰업데이트
-	public void updateReview() {
-		String sql="UPDATE review SET ";
+	public void updateReview(ReviewDTO rDTO) {
+		String sql="UPDATE review SET subject=?,content=?,review_file=?,review_date=?"
+				 + "WHERE num=?";
+		
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, rDTO.getSubject());
+			pstmt.setString(2, rDTO.getContent());
+			pstmt.setString(3, rDTO.getFile());
+			pstmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+			pstmt.setInt(5, rDTO.getNum());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
+	}
+	//리뷰삭제
+	public void deleteReview(int num) {
+		String sql="DELETE FROM review WHERE num=?";
+		
+		try {
+			conn=getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeDB();
+		}
 	}
 }
 
