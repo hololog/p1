@@ -11,11 +11,10 @@
 <title>review/reviewContent.jsp</title>
 <!-- bootstrap css -->
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
-/////////////////////////////////////////////////////////////////////
 <script type="text/javascript">
-	function clickDel() {
-		location.replace("deletePro.jsp?num=변수?");
-	}
+// 	function clickDel(int num) {
+// 		location.replace("deletePro.jsp?num=????");
+// 	}
 </script>
 </head>
 <body>
@@ -84,9 +83,11 @@ if(id!=null){
         이 게시물을 삭제하시겠습니까?
       </div>
       <div class="modal-footer flex-column border-top-0 ">
-        <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2">삭제</button>
-        <button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal" 
-        		onclick="location.href='deleteReviewPro.jsp?num=<%=num%>'">취소</button>
+<!--         <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2" 
+        			onclick="clickDel()">삭제</button> -->
+        	 <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2"  
+         			onclick="location.href='deleteReviewPro.jsp?num=<%=num%>'">삭제</button> 
+        <button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal">취소</button>
       </div>
     </div>
   </div>
