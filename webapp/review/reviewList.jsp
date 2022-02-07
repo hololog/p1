@@ -84,7 +84,7 @@ int pageCount=reviewCount/pageSize + (reviewCount % pageSize == 0? 0:1);
 		if(startPage > pageBlock){
 %>			
 			<li class="page-item">
-		      <a class="page-link" href="reviewList.jsp?pageNum=<%=startPage-pageBlock %>" aria-label="Previous">
+		      <a class="page-link" href="reviewList.jsp?pageNum=<%=startPage-1 %>" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
