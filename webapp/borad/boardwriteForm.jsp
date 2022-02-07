@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글작성</title>
+<title>QnA?</title>
 <!-- bootstratp css -->
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 </head>
