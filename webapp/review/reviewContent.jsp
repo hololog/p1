@@ -12,9 +12,9 @@
 <!-- bootstrap css -->
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 <script type="text/javascript">
-// 	function clickDel(int num) {
-// 		location.replace("deletePro.jsp?num=????");
-// 	}
+	function clickDel(num) {
+		location.replace("deletePro.jsp?num="+num);
+	}
 </script>
 </head>
 <body>
@@ -49,17 +49,16 @@ ReviewDTO rDTO=rDAO.getContent(num);
 				 <td colspan="2">
 				 	<input type="button" class="btn btn-primary" value="목록" onclick="history.back()" >
 <%
-//본인이 작성한 글에만 수정하기버튼 보이기
-String id=(String)session.getAttribute("sessionID");
-MemberDAO mDAO=new MemberDAO();
-if(id!=null){
-	String reviewNick=rDTO.getNick();
-	String userNick=mDAO.getUserInfo(id).getNick();
-	
-	if(userNick.equals(reviewNick)){
+	//본인이 작성한 글에만 수정삭제하기버튼 보이기
+	String id=(String)session.getAttribute("sessionID");
+	MemberDAO mDAO=new MemberDAO();
+	if(id!=null){
+		String reviewNick=rDTO.getNick();
+		String userNick=mDAO.getUserInfo(id).getNick();
+		
+		if(userNick.equals(reviewNick)){
 %>				 	
-				 	<input type="button" class="btn btn-primary" value="수정" onclick="location.href='updateReviewForm.jsp?num=<%=num %>'" >
-<%-- 				 	<input type="button" value="삭제" onclick="location.href='deleteReviewForm.jsp?num=<%=num %>'" > --%>
+				 	<button type="button" class="btn btn-primary" onclick="location.href='updateReviewForm.jsp?num=<%=num %>'">수정</button>
 				 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">삭제</button>
 <%
  	}
@@ -83,11 +82,9 @@ if(id!=null){
         이 게시물을 삭제하시겠습니까?
       </div>
       <div class="modal-footer flex-column border-top-0 ">
-<!--         <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2" 
-        			onclick="clickDel()">삭제</button> -->
-        	 <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2"  
-         			onclick="location.href='deleteReviewPro.jsp?num=<%=num%>'">삭제</button> 
-        <button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2" onclick="clickDel('<%=num%>')">삭제2</button>
+       	<button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2" onclick="location.href='deleteReviewPro.jsp?num=<%=num%>'">삭제</button> 
+       	<button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal">취소</button>
       </div>
     </div>
   </div>
