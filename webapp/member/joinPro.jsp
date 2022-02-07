@@ -21,8 +21,8 @@ String address=bean.getAddress() +", "+ detailAddress +", "+ extraAddress +", "+
 bean.setAddress(address);
 
 MemberDAO mDAO=new MemberDAO();
-//DB채우기용
-// for(int i=0;i<120;i++){
+// DB채우기용
+// for(int i=3;i<120;i++){
 // 	bean.setId("id"+i);
 // 	bean.setName("홍길동"+i);
 // 	bean.setNick("HONG"+i);
