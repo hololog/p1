@@ -78,7 +78,7 @@ public class ReviewDAO {
 	//리뷰목록(페이징-limit방식)
 	public List<ReviewDTO> getReviewList(int pageSize, int startRow) {
 		String sql="SELECT * FROM review ORDER BY num desc LIMIT ?,?";
-		List<ReviewDTO> reviewList=new ArrayList<>();
+		List<ReviewDTO> reviewList=new ArrayList<ReviewDTO>();
 		ReviewDTO rDTO=null;
 		
 		try {

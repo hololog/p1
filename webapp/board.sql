@@ -17,12 +17,15 @@ select * from board;
 
 create table board(
 	num int primary key,
-	name varchar(10) not null,
-	subject varchar(20) not null,
-	content varchar(500) not null,
+	nick varchar(10) not null,
+	subject varchar(20),
+	content varchar(1000),
 	readcount int default 0,
-	indert_date datetime ,
-	);
+	open varchar(10),
+	insert_date datetime default current_timestamp,
+	FOREIGN KEY (nick)
+    REFERENCES member(nick) ON UPDATE CASCADE ON DELETE RESTRICT
+);
 
 CREATE table member(
 	id varchar(20) PRIMARY KEY,
@@ -45,14 +48,15 @@ create table review(
 	review_file varchar(100),
 	readcount int default 0,
 	review_date datetime default current_timestamp
-	);
+);
 
 alter table review modify subject varchar(50) not null;
 
+alter table review 
+add foreign key (nick) 
+references member(nick) ON UPDATE CASCADE ON DELETE RESTRICT;
+
 select * from review;
-
-delete from board where name is null;
-
 
 
 

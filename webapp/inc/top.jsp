@@ -60,7 +60,7 @@
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       <a class="p-2 link-secondary" href="#">Menu</a>
-      <a class="p-2 link-secondary" href="#">갤러리</a>
+      <a class="p-2 link-secondary" href="../board/boardList.jsp">QnA</a>
       <a class="p-2 link-secondary" href="../review/reviewList.jsp">Review</a>
     </nav>
   </div>

@@ -41,8 +41,9 @@ SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 		 <tr>
 		 	<th>#</th><th>이미지</th><th>제목</th><th>글쓴이</th><th>조회수</th><th>등록일</th>
 		 </tr>
-<%for(ReviewDTO r :list){
-	%>		 
+<%
+		for(ReviewDTO r :list){
+%>		 
 		 <tr> 
 		 	<td><%=r.getNum() %></td>
 		 	<td><img src="../upload/<%=r.getFile() %>" width=25 ></td>
@@ -51,7 +52,7 @@ SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 		 	<td><%=r.getReadcount() %></td>
 		 	<td><%=dateFormat.format(r.getReviewDate())  %></td>
 		 </tr>
-<%}%>
+<%		}%>
 		 <tr> 
 		 	<td colspan="6">
 		 		<input type="button" value="리뷰작성" onclick="location.href='writeReviewForm.jsp'">
@@ -69,8 +70,6 @@ int endPage=startPage+pageBlock-1;
 int reviewCount=rDAO.getReviewCount();
 //전체 페이지수
 int pageCount=reviewCount/pageSize + (reviewCount % pageSize == 0? 0:1);
-
-
 %>	 
 <!-- 페이징 -->
 <!-- 페이지 이동버튼 -->

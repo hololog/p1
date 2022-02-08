@@ -30,7 +30,6 @@ if(id==null){
 				<tr>
 					<td><textarea name="content" class="form-control" rows="20" placeholder="여기에 후기를 적어주세요" required></textarea></td>
 				</tr>
-				
 				<tr>
 					<td>
                       <label for="inputImage">첨부이미지</label>

@@ -1,4 +1,3 @@
-<%@page import="member.MemberDTO"%>
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -21,6 +20,7 @@
 	if(bean!=null){
 		//DB에 같은 정보있으면 로그인(세션생성)
 		session.setAttribute("sessionID", bean.getId());
+		session.setAttribute("nick", bean.getNick());
 %>
 		<script type="text/javascript">
 			alert("<%=bean.getNick() %>님, 반갑습니다.");

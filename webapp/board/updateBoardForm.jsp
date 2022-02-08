@@ -1,12 +1,12 @@
-<%@page import="review.ReviewDTO"%>
-<%@page import="review.ReviewDAO"%>
+<%@page import="board.BoardDAO"%>
+<%@page import="board.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>review/updateReviewForm.jsp</title>
+<title>board/updateBoardForm.jsp</title>
 <!-- bootstratp css -->
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 </head>
@@ -22,39 +22,33 @@ if(id==null){
 }
 int num=Integer.parseInt(request.getParameter("num"));
 
-ReviewDAO rDAO=new ReviewDAO();
-ReviewDTO rDTO=rDAO.getContent(num);
+BoardDAO bDAO=new BoardDAO();
+BoardDTO bDTO=bDAO.getContent(num);
 
 String nick=(String)session.getAttribute("nick");
-if(!(nick.equals(rDTO.getNick()))){
+//멤버의 닉이랑 리뷰의 닉이 같을때만 수정화면보이기 
+if(!(nick.equals(bDTO.getNick()))){
 %>	
 	<script type="text/javascript">
 		alert("본인의 게시물이 아닙니다.");
-		location.href="../review/reviewList.jsp";
+		location.href="../board/boardList.jsp";
 	</script>
 <%
 }
 %>
 <!-- main -->
 	<div class="container mt-5">
-		<h2>리뷰수정</h2>
-		<form action="updateReviewPro.jsp" method="post" enctype="Multipart/form-data">
+		<h2>문의글수정</h2>
+		<form action="updateBoardPro.jsp" method="post">
 			<input type="hidden" name="num" value="<%=num%>">
 			<table class="table table-hover">
 				<tr>
-					<td><input type="text" name="subject" class="form-control" value="<%=rDTO.getSubject() %>" required></td>
+					<td><input type="text" name="subject" class="form-control" value="<%=bDTO.getSubject() %>" required></td>
 				</tr>
 				<tr>
 					<td>
-						<input type="image" src="../upload/<%=rDTO.getFile()%>" alt="첨부이미지"><br>
-						<textarea name="content" class="form-control" rows="20" required><%=rDTO.getContent() %></textarea>
+						<textarea name="content" class="form-control" rows="20" required><%=bDTO.getContent() %></textarea>
 					</td>
-				</tr>
-				<tr>
-					<td>
-                        <label for="inputImage">첨부이미지</label>
-                        <input type="file" name="file" id="inputImage" class="form-control">
-                    </td>
 				</tr>
 				<tr>
 					<td>

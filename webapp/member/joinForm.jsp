@@ -9,7 +9,8 @@
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-    function execDaumPostcode() {
+   //우편번호 api
+	function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
                 var addr = ''; // 주소 변수
@@ -53,20 +54,31 @@
     }
     // 비밀번호확인 불일치시 경고창
     function checkValue() {
+    	
 		if(document.getElementById('pass').value != document.getElementById('pass2').value){
 			alert("동일한 비밀번호를 입력해주세요");
 			return false;
 		}
 	}
+    //아이디 중복체크
+    function idCheck(){
+    	if(document.joinForm.id.value=="" || document.joinForm.id.length < 0){
+    		alert("먼저 아이디를 입력해주세요")
+    		document.joinForm.id.focus();
+    	} 
+    	else {
+    		window.open("idCheck.jsp?id="+document.joinForm.id.value,"","width=500, height=300, left=200,top=200");
+    	}
+    }
 </script>
 </head>
 <body>
 <%
-	String id=(String)session.getAttribute("sessionID");
+String id=(String)session.getAttribute("sessionID");
 	
-	if(id!=null){
-		response.sendRedirect("../main/main.jsp");	
-	} 
+if(id!=null){
+	response.sendRedirect("../main/main.jsp");	
+} 
 %>
 <!-- header-->
 <jsp:include page="../inc/top.jsp"></jsp:include>
@@ -82,13 +94,15 @@
 		<table class="table">
 			<tr>
 				<td><label for="id" class=""><em style="color:red">*</em> 아이디</label></td>
-				<td><input type="text" name="id" id="id" required>
-					<input type="button" value="중복확인" onclick=" "></td>
+				<td>
+					<input type="text" name="id" id="id" required>
+					<input type="button" value="중복확인" onclick="idCheck()">
+					<input type="hidden" name="idDuplication" value="unchecked">
+				</td>
 			</tr>
 			<tr>
 				<td><label for="pass" class=""><em style="color:red">*</em> 비밀번호</label></td>
-				<td><input type="password" name="pass" id="pass" required>
-					<p class="">비밀번호는 6자리 이상이어야 하며 영문과 숫자를 반드시 포함해야 합니다.</p></td>
+				<td><input type="password" name="pass" id="pass" required></td>
 			</tr>
 			<tr>
 				<td><label for="pass2" class=""><em style="color:red">*</em> 비밀번호 확인</label></td>
@@ -108,15 +122,14 @@
 			</tr>
 			<tr>
 				<td><label for="address" class=""><em style="color:red">*</em> 주소</label></td>
-<!-- 				<td><input type="text" name="address" id="address" required></td> -->
 				<td>
-				<div>
-					<input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly required>
-					<input type="button" value="우편번호 찾기" onclick="execDaumPostcode()"><br>
-					<input type="text" id="address" name="address" placeholder="주소" readonly required><br>
-					<input type="text" id="detailAddress"name="detailAddress" placeholder="상세주소" required>
- 					<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목">
-				</div>
+					<div>
+						<input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly required>
+						<input type="button" value="우편번호 찾기" onclick="execDaumPostcode()"><br>
+						<input type="text" id="address" name="address" placeholder="주소" readonly required><br>
+						<input type="text" id="detailAddress"name="detailAddress" placeholder="상세주소" required>
+	 					<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목">
+					</div>
 				</td>
 			</tr>
 			<tr>

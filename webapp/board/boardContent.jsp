@@ -1,17 +1,17 @@
-<%@page import="review.ReviewDTO"%>
-<%@page import="review.ReviewDAO"%>
+<%@page import="board.BoardDTO"%>
+<%@page import="board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>review/reviewContent.jsp</title>
+<title>board/boardContent.jsp</title>
 <!-- bootstrap css -->
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 <script type="text/javascript">
 	function clickDel(num) {
-		location.replace("deleteReviewPro.jsp?num="+num);
+		location.replace("deleteBoardPro.jsp?num="+num);
 	}
 </script>
 </head>
@@ -21,9 +21,9 @@
 <!-- header-->
 <%
 int num=Integer.parseInt(request.getParameter("num"));
-ReviewDAO rDAO=new ReviewDAO();
-rDAO.updateReadCount(num);
-ReviewDTO rDTO=rDAO.getContent(num);
+BoardDAO bDAO=new BoardDAO();
+bDAO.updateReadcount(num);
+BoardDTO bDTO=bDAO.getContent(num);
 %>
 <!-- main contents -->
 <div class="container mt-3">
@@ -31,28 +31,27 @@ ReviewDTO rDTO=rDAO.getContent(num);
 		<table class="table ">
 			<thead>
 				<tr>
-				 <th><%=rDTO.getSubject() %></th><td><%=rDTO.getReviewDate() %></td>
+				 <th><%=bDTO.getSubject() %></th><td><%=bDTO.getDate() %></td>
 				</tr>
 				<tr>
-				 <td><%=rDTO.getNick() %></td><td><%=rDTO.getReadcount() %></td>
+				 <td><%=bDTO.getNick() %></td><td><%=bDTO.getReadcount() %></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 				 <td colspan="2">
-					 <img src="../upload/<%=rDTO.getFile() %>"><br>
-					 <%=rDTO.getContent() %></td>
+					 <%=bDTO.getContent() %></td>
 				</tr>
 				<tr>
 				 <td colspan="2">
 				 	<input type="button" class="btn btn-primary" value="목록" onclick="history.back()" >
 <%
-	//본인이 작성한 글에만 수정삭제하기버튼 보이기
+//본인이 작성한 글에만 수정삭제하기버튼 보이기
 String nick=(String)session.getAttribute("nick");
 if(nick!=null){
-	if(nick.equals(rDTO.getNick())){
+	if(nick.equals(bDTO.getNick())){
 %>				 	
-				 	<button type="button" class="btn btn-primary" onclick="location.href='updateReviewForm.jsp?num=<%=num %>'">수정</button>
+				 	<button type="button" class="btn btn-primary" onclick="location.href='updateBoardForm.jsp?num=<%=num %>'">수정</button>
 				 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">삭제</button>
 <%
  	}
@@ -77,7 +76,6 @@ if(nick!=null){
       </div>
       <div class="modal-footer flex-column border-top-0 ">
         <button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2" onclick="clickDel('<%=num%>')">삭제</button>
-<%--        	<button type="button" class="btn btn-lg btn-primary w-100 mx-0 mb-2" onclick="location.href='deleteReviewPro.jsp?num=<%=num%>'">삭제</button>  --%>
        	<button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal">취소</button>
       </div>
     </div>
