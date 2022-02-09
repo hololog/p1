@@ -18,17 +18,13 @@
 %>
 <!-- header-->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<!-- logo -->
-<!-- logo -->
 <!-- header-->
-<!-- main image -->
-<!-- main image -->
-<!-- main contents -->
-
-<form action="loginPro.jsp" method="post">
-<fieldset class="container">
-	<legend>로그인</legend>
-	<table class="table">
+<!-- login -->
+<div class="w3-container w3-padding-64 w3-grey w3-grayscale-min w3-xlarge">
+	<div class="w3-content">
+	<h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Login</h1>
+	<form action="loginPro.jsp" method="post">
+	<table class="table"> 
 		<tr>
 			<td><label for="id">아이디 :</label></td>
 			<td><input type="text" name="id" id="id" required></td>
@@ -41,10 +37,9 @@
 			<td colspan="2"><input type="submit" value="로그인"></td>
 		</tr>
 	</table>
-</fieldset>
-</form>
-
-<!-- main contents -->
+	</form>
+	</div>
+</div>
 <!-- footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- footer -->

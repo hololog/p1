@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="member.MemberDTO"%>
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,23 +15,21 @@
 <!-- header-->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- header-->
-<!-- main contents -->
 <%
-	String id=(String)session.getAttribute("sessionID");
-// 	String memberID=request.getParameter("id");
+String id=(String)session.getAttribute("sessionID");
 
-	if(id == null){
-		response.sendRedirect("loginForm.jsp");		
-	} 
-// 	else if(id.equals("admin") && memberID!=null){
-// 		id=memberID;
-// 	} 
-	MemberDAO mDAO=new MemberDAO();
-	MemberDTO mDTO=mDAO.getUserInfo(id);	
+if(id == null){
+	response.sendRedirect("loginForm.jsp");		
+} 
+MemberDAO mDAO=new MemberDAO();
+MemberDTO mDTO=mDAO.getUserInfo(id);
+SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 %>
-	<div class="container mt-3">
-		<h3>회원정보</h3>
-		<table class="table">
+<!-- info -->
+<div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge">
+	<div class="w3-content">
+	<h1 class="w3-center w3-jumbo" style="margin-bottom:64px">User Info</h1>
+	 <table class="table">
 			<tr>
 				<td>아이디</td>
 				<td><%=mDTO.getId() %></td>
@@ -43,9 +42,6 @@
 				<td>이름</td>
 				<td><%=mDTO.getName() %></td>
 			</tr>
-	<!-- 		<tr> -->
-	<!-- 			<td>프로필사진</td><td></td> -->
-	<!-- 		</tr> -->
 			<tr>
 				<td>이메일</td>
 				<td><%=mDTO.getEmail() %></td>
@@ -56,7 +52,7 @@
 			</tr>
 			<tr>
 				<td>가입일</td>
-				<td><%=mDTO.getJoinDate() %></td>
+				<td><%=dateFormat.format(mDTO.getJoinDate())  %></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -67,7 +63,7 @@
 			</tr>
 		</table>
 	</div>
-<!-- main contents -->
+</div>
 <!-- footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- footer -->

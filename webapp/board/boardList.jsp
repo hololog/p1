@@ -41,7 +41,7 @@ int boardCount=bDAO.getBoardCount();
 int pageCount=boardCount/pageSize+(boardCount % pageSize == 0? 0:1);
 %>
 <div class="container mt-3">
-	<table class="table table-stripe" >
+	<table class="table table-hover" >
 		 <tr>
 		 	<th>글번호</th><th>글쓴이</th><th>제목</th><th>조회수</th><th>등록일</th>
 		 </tr>

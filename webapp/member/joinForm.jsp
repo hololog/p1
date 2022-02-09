@@ -82,14 +82,11 @@ if(id!=null){
 %>
 <!-- header-->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<!-- logo -->
-<!-- logo -->
 <!-- header-->
-<!-- main image -->
-<!-- main image -->
-<!-- main contents -->
-<section class="container">
-	<h3>회원가입</h3>
+<!-- join -->
+<div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge">
+	<div class="w3-content">
+	<h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Join us</h1>
 	<form action="joinPro.jsp" method="post" name="joinForm" onsubmit="return checkValue()">
 		<table class="table">
 			<tr>
@@ -140,9 +137,61 @@ if(id!=null){
 			</tr>
 		</table>
 	</form>
-</section>
-
-<!-- main contents -->
+	</div>
+</div>
+<!-- <section class="container"> -->
+<!-- 	<h3>회원가입</h3> -->
+<!-- 	<form action="joinPro.jsp" method="post" name="joinForm" onsubmit="return checkValue()"> -->
+<!-- 		<table class="table"> -->
+<!-- 			<tr> -->
+<!-- 				<td><label for="id" class=""><em style="color:red">*</em> 아이디</label></td> -->
+<!-- 				<td> -->
+<!-- 					<input type="text" name="id" id="id" required> -->
+<!-- 					<input type="button" value="중복확인" onclick="idCheck()"> -->
+<!-- 					<input type="hidden" name="idDuplication" value="unchecked"> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td><label for="pass" class=""><em style="color:red">*</em> 비밀번호</label></td> -->
+<!-- 				<td><input type="password" name="pass" id="pass" required></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td><label for="pass2" class=""><em style="color:red">*</em> 비밀번호 확인</label></td> -->
+<!-- 				<td><input type="password" name="pass2" id="pass2" required></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td><label for="name" class=""><em style="color:red">*</em> 이름</label></td> -->
+<!-- 				<td><input type="text" name="name" id="name" required></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td><label for="nick" class=""><em style="color:red">*</em> 닉네임</label></td> -->
+<!-- 				<td><input type="text" name="nick" id="nick" required></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td><label for="email" class=""><em style="color:red">*</em> 이메일</label></td> -->
+<!-- 				<td><input type="email" name="email" id="email" required></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td><label for="address" class=""><em style="color:red">*</em> 주소</label></td> -->
+<!-- 				<td> -->
+<!-- 					<div> -->
+<!-- 						<input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly required> -->
+<!-- 						<input type="button" value="우편번호 찾기" onclick="execDaumPostcode()"><br> -->
+<!-- 						<input type="text" id="address" name="address" placeholder="주소" readonly required><br> -->
+<!-- 						<input type="text" id="detailAddress"name="detailAddress" placeholder="상세주소" required> -->
+<!-- 	 					<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"> -->
+<!-- 					</div> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td colspan="2"> -->
+<!-- 					<input type="submit" value="가입"> -->
+<!-- 					<input type="reset" value="취소"> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
+<!-- 	</form> -->
+<!-- </section> -->
 <!-- footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- footer -->

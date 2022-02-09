@@ -15,6 +15,7 @@
 <%
 //세션확인
 String id=(String)session.getAttribute("sessionID");
+String nick=(String)session.getAttribute("nick");
 
 if(id==null){
 	response.sendRedirect("../member/loginForm.jsp");
@@ -33,12 +34,12 @@ String content=multi.getParameter("content");
 String file=multi.getFilesystemName("file");
 int readcount=0;
 //닉네임 가져오기
-MemberDAO mDAO=new MemberDAO();
-String nick=mDAO.getUserInfo(id).getNick();
+// MemberDAO mDAO=new MemberDAO();
+// String nick=mDAO.getUserInfo(id).getNick();
 //게시물번호
 ReviewDAO rDAO=new ReviewDAO();
-
 ReviewDTO rDTO=new ReviewDTO();
+
 rDTO.setNum(rDAO.getNextNum());
 rDTO.setNick(nick);
 rDTO.setSubject(subject);

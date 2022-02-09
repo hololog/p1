@@ -4,8 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index.jsp</title>
+<title>title</title>
+<!-- bootstrap css -->
+<jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 </head>
 <body>
+<!-- header-->
+<jsp:include page="../inc/top.jsp"></jsp:include>
+<!-- header-->
+<!-- main contents -->
+<!-- main contents -->
+<!-- footer -->
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
+<!-- footer -->
+<!-- bootstratp js -->
+<jsp:include page="../inc/bootstrap_js.jsp"></jsp:include>
 </body>
 </html>

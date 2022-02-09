@@ -50,14 +50,28 @@ create table review(
 	review_date datetime default current_timestamp
 );
 
+create table file(
+	num int primary key,
+	nick varchar(10) not null,
+	subject varchar(50) not null,
+	content varchar(1000) not null,
+	review_file varchar(100),
+	readcount int default 0,
+	review_date datetime default current_timestamp
+);
+
 alter table review modify subject varchar(50) not null;
 
-alter table review 
+alter table file 
 add foreign key (nick) 
 references member(nick) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 select * from review;
 
+select * from file;
+
+alter table file
+change review_date date datetime;
 
 
 

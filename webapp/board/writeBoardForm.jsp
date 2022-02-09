@@ -20,7 +20,7 @@ if(nick==null){
 %>
 <!-- main -->
 	<div class="container mt-5">
-		<h2>문의글작성</h2>
+		<h2>QnA</h2>
 		<form action="writeBoardPro.jsp" method="post">
 			<input type="hidden" name="nick" value=<%=nick %>>
 			<table class="table table-hover">

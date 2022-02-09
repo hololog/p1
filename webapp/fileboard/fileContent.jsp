@@ -1,18 +1,17 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="board.BoardDTO"%>
-<%@page import="board.BoardDAO"%>
+<%@page import="file.FileDTO"%>
+<%@page import="file.FileDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>board/boardContent.jsp</title>
+<title>fileboard/fileContent.jsp</title>
 <!-- bootstrap css -->
 <jsp:include page="../inc/bootstrap_css.jsp"></jsp:include>
 <script type="text/javascript">
 	function clickDel(num) {
-		location.replace("deleteBoardPro.jsp?num="+num);
+		location.replace("deleteFilePro.jsp?num="+num);
 	}
 </script>
 </head>
@@ -22,10 +21,9 @@
 <!-- header-->
 <%
 int num=Integer.parseInt(request.getParameter("num"));
-BoardDAO bDAO=new BoardDAO();
-bDAO.updateReadcount(num);
-BoardDTO bDTO=bDAO.getContent(num);
-SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+FileDAO rDAO=new FileDAO();
+rDAO.updateReadCount(num);
+FileDTO fDTO=rDAO.getContent(num);
 %>
 <!-- main contents -->
 <div class="container mt-3">
@@ -33,27 +31,28 @@ SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 		<table class="table ">
 			<thead>
 				<tr>
-				 <th><%=bDTO.getSubject() %></th><td><%=dateFormat.format(bDTO.getDate())  %></td>
+				 <th><%=fDTO.getSubject() %></th><td><%=fDTO.getDate() %></td>
 				</tr>
 				<tr>
-				 <td><%=bDTO.getNick() %></td><td><%=bDTO.getReadcount() %></td>
+				 <td><%=fDTO.getNick() %></td><td><%=fDTO.getReadcount() %></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-				 <td colspan="2" width="400" height="400">
-					 <%=bDTO.getContent() %></td>
+				 <td colspan="2">
+					 <a href="../upload/<%=fDTO.getFile() %>" download><%=fDTO.getFile() %></a><br>
+					 <%=fDTO.getContent() %></td>
 				</tr>
 				<tr>
 				 <td colspan="2">
 				 	<input type="button" class="btn btn-primary" value="목록" onclick="history.back()" >
 <%
-//본인이 작성한 글에만 수정삭제하기버튼 보이기
+	//본인이 작성한 글에만 수정삭제하기버튼 보이기
 String nick=(String)session.getAttribute("nick");
 if(nick!=null){
-	if(nick.equals(bDTO.getNick())){
+	if(nick.equals(fDTO.getNick())){
 %>				 	
-				 	<button type="button" class="btn btn-primary" onclick="location.href='updateBoardForm.jsp?num=<%=num %>'">수정</button>
+				 	<button type="button" class="btn btn-primary" onclick="location.href='updateFileForm.jsp?num=<%=num %>'">수정</button>
 				 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal">삭제</button>
 <%
  	}

@@ -1,5 +1,3 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="review.ReviewDTO"%>
 <%@page import="review.ReviewDAO"%>
@@ -23,6 +21,7 @@ ReviewDAO rDAO=new ReviewDAO();
 //한 페이지당 게시물 수
 int pageSize=10;
 //총 페이지수
+
 String pageNum=request.getParameter("pageNum");
 if(pageNum==null){
 	pageNum="1";
@@ -31,39 +30,29 @@ if(pageNum==null){
 int currentPage=Integer.parseInt(pageNum);
 //해당 페이지의 게시물의 시작열
 int startRow=pageSize*(currentPage-1)+1;
+
 List<ReviewDTO> list=rDAO.getReviewList(pageSize, startRow);
 
 SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
-SimpleDateFormat todayFormat=new SimpleDateFormat("HH:mm:ss");
-Date nowTime = new Date();
 %>
 <!-- 게시판 본문 -->
 <div class="container mt-3">
 	<table class="table table-stripe" >
-<!-- 		 <tr> -->
-<!-- 		 	<th>#</th><th>이미지</th><th>제목</th><th>글쓴이</th><th>조회수</th><th>등록일</th> -->
-<!-- 		 </tr> -->
-		 <tr> 
-<%
-		for(int i=0; i<list.size(); i++){
-			ReviewDTO bDTO=list.get(i);
-%>		 
-		 	<td>
-		 		<img src="../upload/<%=bDTO.getFile() %>" width="100" height="100" 
-		 			 onclick="location.href='reviewContent.jsp?num=<%=bDTO.getNum()%>'"><br>
-		 		<a href="reviewContent.jsp?num=<%=bDTO.getNum() %>"><%=bDTO.getSubject() %></a><br>
-		 		<%=bDTO.getNick() %><br>
-		 		<%=bDTO.getReadcount() %>
-		 		<%=dateFormat.format(bDTO.getReviewDate()) %>
-		 		<br>
-		 	</td>
-<% 
-			if((i+1)%5==0){
-				%></tr><tr><%
-			}
-		}
-%>
+		 <tr>
+		 	<th>#</th><th>이미지</th><th>제목</th><th>글쓴이</th><th>조회수</th><th>등록일</th>
 		 </tr>
+<%
+		for(ReviewDTO r :list){
+%>		 
+		 <tr> 
+		 	<td><%=r.getNum() %></td>
+		 	<td><img src="../upload/<%=r.getFile() %>" width=25 ></td>
+		 	<td><a href="reviewContent.jsp?num=<%=r.getNum() %>"><%=r.getSubject() %></a></td>
+		 	<td><a href="#"><%=r.getNick() %></a></td>
+		 	<td><%=r.getReadcount() %></td>
+		 	<td><%=dateFormat.format(r.getReviewDate())  %></td>
+		 </tr>
+<%		}%>
 		 <tr> 
 		 	<td colspan="6">
 		 		<input type="button" value="리뷰작성" onclick="location.href='writeReviewForm.jsp'">
