@@ -12,7 +12,6 @@
 </head>
 <body>
 <%
-request.setCharacterEncoding("UTF-8");
 String id = request.getParameter("id");
 
 MemberDAO mDAO = new MemberDAO();
