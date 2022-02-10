@@ -16,6 +16,8 @@ request.setCharacterEncoding("UTF-8");
 <%
 MemberDAO mDAO=new MemberDAO();
 mDAO.updateInfo(bean);
+//닉네임 세션값 변경
+session.setAttribute("nick", bean.getNick());
 response.sendRedirect("memberInfo.jsp");
 %>
 </body>
