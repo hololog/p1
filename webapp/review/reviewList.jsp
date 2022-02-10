@@ -21,7 +21,7 @@
 <%
 ReviewDAO rDAO=new ReviewDAO();
 //한 페이지당 게시물 수
-int pageSize=10;
+int pageSize=8;
 //총 페이지수
 String pageNum=request.getParameter("pageNum");
 if(pageNum==null){
@@ -38,41 +38,31 @@ SimpleDateFormat todayFormat=new SimpleDateFormat("HH:mm:ss");
 Date nowTime = new Date();
 %>
 <!-- 게시판 본문 -->
-<div class="container mt-3">
-	<table class="table table-stripe" >
-<!-- 		 <tr> -->
-<!-- 		 	<th>#</th><th>이미지</th><th>제목</th><th>글쓴이</th><th>조회수</th><th>등록일</th> -->
-<!-- 		 </tr> -->
-		 <tr> 
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+	<div class="w3-row-padding w3-padding-16 w3-center">
 <%
 		for(int i=0; i<list.size(); i++){
 			ReviewDTO bDTO=list.get(i);
-%>		 
-		 	<td>
-		 		<img src="../upload/<%=bDTO.getFile() %>" width="100" height="100" 
-		 			 onclick="location.href='reviewContent.jsp?num=<%=bDTO.getNum()%>'"><br>
-		 		<a href="reviewContent.jsp?num=<%=bDTO.getNum() %>"><%=bDTO.getSubject() %></a><br>
-		 		<%=bDTO.getNick() %><br>
-		 		<%=bDTO.getReadcount() %>
-		 		<%=dateFormat.format(bDTO.getReviewDate()) %>
-		 		<br>
-		 	</td>
+%>	
+	    <div class="w3-quarter">
+	      <img src="../upload/<%=bDTO.getFile() %>" alt="<%=bDTO.getFile() %>" style="width:100%">
+	      <h3><a href="reviewContent.jsp?num=<%=bDTO.getNum() %>"><%=bDTO.getSubject() %></a></h3>
+	      <p><%=bDTO.getNick() %> <%=bDTO.getReadcount() %><br>
+		 	 <%=dateFormat.format(bDTO.getReviewDate()) %></p>
+	    </div>
 <% 
-			if((i+1)%5==0){
-				%></tr><tr><%
+			if((i+1)%4==0){
+				%></div><div class="w3-row-padding w3-padding-16 w3-center"><%
 			}
 		}
-%>
-		 </tr>
-		 <tr> 
-		 	<td colspan="6">
-		 		<input type="button" value="리뷰작성" onclick="location.href='writeReviewForm.jsp'">
-		 	</td>
-		 </tr>
-	</table>
+%>	    
+	    <div>
+	    	<hr>
+	 		<input type="button" value="리뷰작성" onclick="location.href='writeReviewForm.jsp'">
+	    </div>
+	</div>
 </div>
 <!-- 게시판 본문 -->
-<!-- 페이징 -->
 <%
 int pageBlock=5;
 int startPage=(currentPage-1)/pageBlock*pageBlock+1;
@@ -82,7 +72,6 @@ int reviewCount=rDAO.getReviewCount();
 //전체 페이지수
 int pageCount=reviewCount/pageSize + (reviewCount % pageSize == 0? 0:1);
 %>	 
-<!-- 페이징 -->
 <!-- 페이지 이동버튼 -->
 <div>
 	<nav aria-label="Page navigation" >
