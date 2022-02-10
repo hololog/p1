@@ -45,7 +45,7 @@ SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 		 	<td><%=r.getNum() %></td>
 		 	<td><%=r.getSubject() %></td>
 		 	<td><%=r.getNick() %></td>
-		 	<td><a href="../upload/<%=r.getFile() %>" download><%=r.getFile() %></a></td>
+		 	<td><%=r.getFile() %></td>
 		 	<td><%=r.getReadcount() %></td>
 		 	<td><%=dateFormat.format(r.getDate())  %></td>
 		 </tr>

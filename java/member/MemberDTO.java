@@ -10,8 +10,30 @@ public class MemberDTO {
 	private String name;
 	private String email;
 	private String address;
+	private String detailAddress;
+	private String extraAddress;
+	private String postcode;
 	private Timestamp joinDate;
 	
+	
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
+	}
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
 	public String getId() {
 		return id;
 	}

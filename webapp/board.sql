@@ -37,9 +37,6 @@ CREATE table member(
 	join_date datetime default current_timestamp
 );
 
-select * from member;
-
-
 create table review(
 	num int primary key,
 	nick varchar(10) not null,
@@ -70,9 +67,21 @@ select * from review;
 
 select * from file;
 
-alter table file
-change review_date date datetime;
+select * from member;
 
+select * from board;
+
+alter table member add column extraAddress varchar(20);
+alter table member add column detailAddress varchar(20);
+alter table member add column postcode varchar(20);
+
+update member set address='부산 수영구 광안해변로 418, 105, (민락동), 48278' where id='admin';
+
+truncate table member;
+
+delete from member where id='id2';
+set FOREIGN_KEY_CHECKS = 0;
+set FOREIGN_KEY_CHECKS = 1;
 
 
 

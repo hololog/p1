@@ -38,7 +38,7 @@ public class MemberDAO {
 	}
 	//DB 회원등록
 	public void insertMember(MemberDTO mDTO) {
-		String sql="INSERT INTO member VALUES(?,?,?,?,?,?,?)";
+		String sql="INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn=getConnection();
 			pstmt=conn.prepareStatement(sql);
@@ -48,8 +48,10 @@ public class MemberDAO {
 			pstmt.setString(4, mDTO.getNick());
 			pstmt.setString(5, mDTO.getEmail());
 			pstmt.setString(6, mDTO.getAddress());
-			//DB에서 디폴트 뭐가 더 좋을까?
 			pstmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+			pstmt.setString(8, mDTO.getPostcode());
+			pstmt.setString(9, mDTO.getDetailAddress());
+			pstmt.setString(10, mDTO.getExtraAddress());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,7 +78,10 @@ public class MemberDAO {
 				mDTO.setName(rs.getString("name"));
 				mDTO.setNick(rs.getString("nick"));
 				mDTO.setEmail(rs.getString("email"));
+				mDTO.setPostcode(rs.getString("postcode"));
 				mDTO.setAddress(rs.getString("address"));
+				mDTO.setExtraAddress(rs.getString("extraAddress"));
+				mDTO.setDetailAddress(rs.getString("detailAddress"));
 				mDTO.setJoinDate(rs.getTimestamp("join_date"));
 			}
 			
@@ -100,12 +105,16 @@ public class MemberDAO {
 			
 			if(rs.next()) {
 				mDTO=new MemberDTO();
+				
 				mDTO.setId(rs.getString("id"));
 				mDTO.setPass(rs.getString("pass"));
 				mDTO.setName(rs.getString("name"));
 				mDTO.setNick(rs.getString("nick"));
 				mDTO.setEmail(rs.getString("email"));
+				mDTO.setPostcode(rs.getString("postcode"));
 				mDTO.setAddress(rs.getString("address"));
+				mDTO.setExtraAddress(rs.getString("extraAddress"));
+				mDTO.setDetailAddress(rs.getString("detailAddress"));
 				mDTO.setJoinDate(rs.getTimestamp("join_date"));
 			}
 		} catch (Exception e) {
@@ -117,7 +126,7 @@ public class MemberDAO {
 	}
 	//회원정보 변경
 	public void updateInfo(MemberDTO mDTO) {
-		String sql="UPDATE member SET nick=?,name=?,email=?,address=? "
+		String sql="UPDATE member SET nick=?,name=?,email=?,address=?,detailAddress=?,extraAddress=?,postcode=? "
 				+ "WHERE id=?";
 		try {
 			conn=getConnection();
@@ -126,7 +135,10 @@ public class MemberDAO {
 			pstmt.setString(2, mDTO.getName());
 			pstmt.setString(3, mDTO.getEmail());
 			pstmt.setString(4, mDTO.getAddress());
-			pstmt.setString(5, mDTO.getId());
+			pstmt.setString(5, mDTO.getDetailAddress());
+			pstmt.setString(6, mDTO.getExtraAddress());
+			pstmt.setString(7, mDTO.getPostcode());
+			pstmt.setString(8, mDTO.getId());
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -187,7 +199,10 @@ public class MemberDAO {
 				mDTO.setName(rs.getString("name"));
 				mDTO.setNick(rs.getString("nick"));
 				mDTO.setEmail(rs.getString("email"));
+				mDTO.setPostcode(rs.getString("postcode"));
 				mDTO.setAddress(rs.getString("address"));
+				mDTO.setExtraAddress(rs.getString("extraAddress"));
+				mDTO.setDetailAddress(rs.getString("detailAddress"));
 				mDTO.setJoinDate(rs.getTimestamp("join_date"));
 				
 				list.add(mDTO);

@@ -60,19 +60,19 @@ List<MemberDTO> list=mDAO.getUserList(startRow, pageSize);
 
 SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 
-int num = 0;
+int num = startRow-1;
 
 	for(MemberDTO mDTO : list){
 		num++;
 %>	
 	<tbody>	
 		<tr>
-			<th scope="row"><%=num %></th>
+			<th scope="row"><%=num%></th>
 			<td><a href="../member/memberInfo.jsp?id=<%=mDTO.getId() %>"><%=mDTO.getId() %></a></td>
 			<td><%=mDTO.getName() %></td>
 			<td><%=mDTO.getNick() %></td>
 			<td><%=mDTO.getEmail() %></td>
-			<td><%=mDTO.getAddress() %></td>
+			<td><%=mDTO.getAddress() %>,<%=mDTO.getDetailAddress() %>,<%=mDTO.getExtraAddress() %>,<%=mDTO.getPostcode() %></td>
 			<td><%=dateFormat.format(mDTO.getJoinDate())  %></td>
 		</tr>
 	</tbody>		

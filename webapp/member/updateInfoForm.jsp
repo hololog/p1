@@ -70,7 +70,6 @@ if(id==null){
 
 MemberDAO mDAO=new MemberDAO();
 MemberDTO mDTO=mDAO.getUserInfo(id);
-String[] arrAddr=mDTO.getAddress().split(",");
 %>
 <div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge">
 	<div class="w3-content">
@@ -95,14 +94,22 @@ String[] arrAddr=mDTO.getAddress().split(",");
 				<td><input type="email" name="email" id="email" value="<%=mDTO.getEmail() %>" required></td>
 			</tr>
 			<tr>
-				<td><label for="address" class=""><em style="color:red">*</em> 주소</label></td>
+				<td><label for="address" class="">현재 주소</label></td>
 				<td>
 					<div>
-						<input type="text" id="postcode" name="postcode" placeholder="<%=arrAddr[3] %>" readonly required>
+						<input type="text" id="postcode" name="postcode" placeholder="우편번호" readonly required>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="address" class=""><em style="color:red">*</em>수정할 주소</label></td>
+				<td>
+					<div>
+						<input type="text" id="postcode" name="postcode" placeholder="<%=mDTO.getPostcode() %>" readonly required>
 						<input type="button" value="우편번호 찾기" onclick="execDaumPostcode()"><br>
-						<input type="text" id="address" name="address" placeholder="<%=arrAddr[0] %>" readonly required><br>
-						<input type="text" id="detailAddress"name="detailAddress" placeholder="<%=arrAddr[1] %>" required>
-	 					<input type="text" id="extraAddress" name="extraAddress" placeholder="<%=arrAddr[2] %>">
+						<input type="text" id="address" name="address" placeholder="<%=mDTO.getAddress() %>" readonly required><br>
+						<input type="text" id="detailAddress"name="detailAddress" placeholder="<%=mDTO.getDetailAddress() %>" required>
+	 					<input type="text" id="extraAddress" name="extraAddress" placeholder="<%=mDTO.getExtraAddress() %>">
 					</div>
 				</td>
 			</tr>
@@ -116,45 +123,6 @@ String[] arrAddr=mDTO.getAddress().split(",");
 	</form>
 	</div>
 </div>
-<!-- <div class="container mt-5"> -->
-<!-- 	<h2>회원정보 조회/수정</h2> -->
-<!-- 	<form action="updateInfoPro.jsp" method="post"> -->
-<!-- 	<p>회원의 정보를 보호하기 위해 비밀번호를 다시한번 확인합니다.</p> -->
-<!-- 		<table class="table"> -->
-<!-- 			<tr> -->
-<!-- 				<td><label for="id"> 아이디</label></td> -->
-<%-- 				<td><input type="text" name="id" id="id" value="<%=mDTO.getId() %>" readonly></td> --%>
-<!-- 			</tr> -->
-<!-- 			<tr>	 -->
-<!-- 				<td><label for="nick"> 닉네임</label></td> -->
-<%-- 				<td><input type="text" name="nick" id="nick" value="<%=mDTO.getNick() %>" required></td> --%>
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td><label for="name"> 이름</label></td> -->
-<%-- 				<td><input type="text" name="name" id="name" value="<%=mDTO.getName() %>" required></td> --%>
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td><label for="email"> 이메일</label></td> -->
-<%-- 				<td><input type="email" name="email" id="email" value="<%=mDTO.getEmail() %>" required></td> --%>
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td><label for="address">주소</label></td> -->
-<%-- 				<td><input type="text" name="address" id="address" value="<%=mDTO.getAddress() %>" required></td> --%>
-<!-- 			</tr> -->
-<!-- 		<!-- 		<tr> --> -->
-<!-- 		<!-- 			<td>프로필사진</td><td></td> --> -->
-<!-- 		<!-- 		</tr> --> -->
-<!-- 			<tr> -->
-<!-- 				<td colspan="2"> -->
-<!-- 					<input type="submit" value="변경"> -->
-<!-- 					<input type="button" value="취소" onclick="location.href='memberInfo.jsp'"> -->
-<!-- 				</td> -->
-<!-- 			</tr> -->
-<!-- 		</table> -->
-<!-- 	</form> -->
-<!-- </div> -->
-
-<!-- main contents -->
 <!-- footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- footer -->

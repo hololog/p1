@@ -21,8 +21,8 @@ bean.setReadcount(0);
 //샘플
 // for(int i=0;i<80;i++){
 // 	bean.setNum(bDAO.getNextNum());
-// 	bean.setSubject("문의글"+i);
-// 	bean.setContent("문의글"+i);
+// 	bean.setSubject("문의글제목"+i);
+// 	bean.setContent("문의글내용입니다"+i);
 // 	bDAO.insertBoard(bean);
 // }
 bDAO.insertBoard(bean);

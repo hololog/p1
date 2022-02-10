@@ -48,7 +48,7 @@ rDTO.setReadcount(readcount);
 rDTO.setFile(file);
 
 // // 글등록 샘플용
-// for(int i=0; i<10;i++){
+// for(int i=0; i<50;i++){
 // 	rDTO.setNum(rDAO.getNextNum());
 // 	rDTO.setNick(nick);
 // 	rDTO.setSubject(subject);

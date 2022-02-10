@@ -2,11 +2,6 @@
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>	
-<jsp:useBean id="bean" class="member.MemberDTO" scope="page"></jsp:useBean>
-<jsp:setProperty property="*" name="bean"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +10,17 @@
 </head>
 <body>
 <%
-	request.setCharacterEncoding("UTF-8");
-	String newPass=request.getParameter("pass2");
-	String newPass1=request.getParameter("pass3");
-	MemberDAO mDAO=new MemberDAO();
- 	bean=mDAO.userCheck(bean);
+request.setCharacterEncoding("UTF-8");
+%>	
+<jsp:useBean id="bean" class="member.MemberDTO" scope="page"></jsp:useBean>
+<jsp:setProperty property="*" name="bean"/>
+<%
+request.setCharacterEncoding("UTF-8");
+String newPass=request.getParameter("pass2");
+String newPass1=request.getParameter("pass3");
+
+MemberDAO mDAO=new MemberDAO();
+bean=mDAO.userCheck(bean);
  	
 //  	int result=0;
 	if(!(newPass.equals(newPass1))) {

@@ -14,18 +14,12 @@ request.setCharacterEncoding("UTF-8");
 <jsp:useBean id="bean" class="member.MemberDTO"></jsp:useBean>
 <jsp:setProperty property="*" name="bean"/>
 <%
-String postcode=request.getParameter("postcode");
-String detailAddress=request.getParameter("detailAddress");
-String extraAddress=request.getParameter("extraAddress");
-String address=bean.getAddress() +", "+ detailAddress +", "+ extraAddress +", "+ postcode;
-bean.setAddress(address);
-
 MemberDAO mDAO=new MemberDAO();
 // DB채우기용
-// for(int i=3;i<120;i++){
-// 	bean.setId("id"+i);
-// 	bean.setName("홍길동"+i);
-// 	bean.setNick("HONG"+i);
+// for(int i=5;i<120;i++){
+// 	bean.setId("AAA"+i);
+// 	bean.setName("김길동"+i);
+// 	bean.setNick("kildong"+i);
 // 	bean.setEmail(i+"hong@gmail.com");
 // 	mDAO.insertMember(bean);
 // }

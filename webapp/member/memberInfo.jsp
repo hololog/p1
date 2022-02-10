@@ -17,12 +17,22 @@
 <!-- header-->
 <%
 String id=(String)session.getAttribute("sessionID");
+String userId=request.getParameter("id");
+
+// if(id == null){
+// 	response.sendRedirect("loginForm.jsp");
+// } 
+MemberDAO mDAO=new MemberDAO();
+MemberDTO mDTO=new MemberDTO();
 
 if(id == null){
-	response.sendRedirect("loginForm.jsp");		
-} 
-MemberDAO mDAO=new MemberDAO();
-MemberDTO mDTO=mDAO.getUserInfo(id);
+	response.sendRedirect("loginForm.jsp");
+} else if(!(id.equals("admin")) || userId==null){
+	mDTO=mDAO.getUserInfo(id);
+} else {
+	mDTO=mDAO.getUserInfo(userId);
+}
+// MemberDTO mDTO=mDAO.getUserInfo(id);
 SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 %>
 <!-- info -->
@@ -48,7 +58,7 @@ SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
 			</tr>
 			<tr>
 				<td>주소</td>
-				<td><%=mDTO.getAddress() %></td>
+				<td><%=mDTO.getAddress() %>,<%=mDTO.getDetailAddress() %>,<%=mDTO.getExtraAddress() %>,<%=mDTO.getPostcode() %></td>
 			</tr>
 			<tr>
 				<td>가입일</td>
