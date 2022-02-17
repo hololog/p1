@@ -11,18 +11,11 @@
 <body>
 <!-- header-->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<!-- logo -->
-<!-- logo -->
 <!-- header-->
 <!-- main image -->
-<!-- <main> -->
-<div >
- <img src="../image/front1.png" class="img-fluid" width="300%" alt="front">
+<div>
+	 	<img src="../image/front1.png" width="100%" alt="front">
 </div>
-<!-- </main> -->
-<!-- main image -->
-<!-- main contents -->
-<!-- main contents -->
 <!-- footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- footer -->
